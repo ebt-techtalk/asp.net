@@ -11,8 +11,19 @@ namespace demo.middleware
         {
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("{'Inline middleware':'");
+                await next.Invoke();
+                await context.Response.WriteAsync("'}");
+            });
+            app.UseCustomMiddleware();
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("demo.middleware");
