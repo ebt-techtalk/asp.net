@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -23,6 +22,7 @@ namespace demo.mvc
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -37,9 +37,11 @@ namespace demo.mvc
 
             app.UseStaticFiles();
 
-            app.Run(async (context) =>
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("demo.mvc");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
