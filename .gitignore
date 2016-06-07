@@ -32,3 +32,5 @@
 /src/demo.webapi/obj/Debug/netcoreapp1.0
 /src/demo.auth/bin/src/demo.auth/bin/Debug/netcoreapp1.0
 /src/demo.auth/bin/src/demo.auth/obj/Debug/netcoreapp1.0
+/src/demo.ef/bin/src/demo.ef/bin/Debug/netcoreapp1.0
+/src/demo.ef/bin/src/demo.ef/obj/Debug/netcoreapp1.0
