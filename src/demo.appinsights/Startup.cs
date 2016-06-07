@@ -15,6 +15,7 @@ namespace demo.appinsights
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+            builder.AddApplicationInsightsSettings(developerMode: env.IsDevelopment());
             Configuration = builder.Build();
         }
 
@@ -22,10 +23,13 @@ namespace demo.appinsights
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry(Configuration);
         }
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseApplicationInsightsRequestTelemetry();
+            app.UseApplicationInsightsExceptionTelemetry();
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("demo.appinsights");
