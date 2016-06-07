@@ -6,3 +6,5 @@
 *.user
 /src/demo.middleware/bin/Debug/netcoreapp1.0
 /src/demo.middleware/obj/Debug/netcoreapp1.0
+/src/demo.di/bin/Debug/netcoreapp1.0
+/src/demo.di/obj/Debug/netcoreapp1.0
